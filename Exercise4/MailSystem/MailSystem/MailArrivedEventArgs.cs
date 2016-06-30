@@ -8,7 +8,6 @@ namespace MailSystem
 {
     public class MailArrivedEventArgs : EventArgs
     {
-
         public String Title { get; }
         public String Body { get; }
         public MailArrivedEventArgs(String title, String body)

@@ -19,7 +19,6 @@ namespace MailSystem
             {
                 MailArrived(this, mailArrivedArgs);
             }
-            
         }
         /// <summary>
         /// calls OnMailArrived with some dummy data

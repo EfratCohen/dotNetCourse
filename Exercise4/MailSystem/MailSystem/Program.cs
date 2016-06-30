@@ -11,9 +11,9 @@ namespace MailSystem
         /// <summary>
         /// create an instance of MailManager and connect to the MailArrived event
         /// in the handler, output the title and body to the console.
-        ///  Call the SimulateMailArrived to check the event connection. 
-        ///  Create a System.Threading.Timer, and in the timer callback call SimulateMailArrived every 1 second. 
-        ///  Call Thread.Sleep in the main thread to keep the application alive, or call Console.ReadLine.  
+        /// Call the SimulateMailArrived to check the event connection. 
+        /// Create a System.Threading.Timer, and in the timer callback call SimulateMailArrived every 1 second (=1000 milisc). 
+        /// Call Thread.Sleep in the main thread to keep the application alive, or call Console.ReadLine.  
         /// </summary>
         /// <param name="args"></param>
         static void Main(string[] args)
