@@ -37,12 +37,11 @@ namespace ShapesApp
             shapeManager.Add(c1); shapeManager.Add(c2);
             shapeManager.Add(e1); shapeManager.Add(e2); shapeManager.Add(e3);
             shapeManager.Add(r1); shapeManager.Add(r2); shapeManager.Add(r3);
-            Console.WriteLine("we create Shape manager and insert " + shapeManager.Count + " shpes");
+            Console.WriteLine($"we create Shape manager and insert {shapeManager.Count} shpes");
             shapeManager.DisplayAll();
             // call the Save method and display the resulting StringBuilder using its ToString method.
             StringBuilder sb = new StringBuilder();
-            Console.WriteLine("we used a StringBuilder and save to him this text" + "\n"
-                                + " about all the shapes in our shape menger: ");
+            Console.WriteLine("we used a StringBuilder and save to him this text \n about all the shapes in our shape menger: ");
             shapeManager.save(sb);
             Console.WriteLine(sb.ToString());
             //checking CompareTo

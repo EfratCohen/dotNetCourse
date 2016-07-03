@@ -72,10 +72,10 @@ namespace ShapeLib
         public override void Display()
         {
             base.Display();
-            Console.WriteLine("In this ellipse long radious= " + LongRadious + ", short radious= " + ShortRadious);
+            Console.WriteLine($"In this ellipse long radious= { LongRadious }, short radious= { ShortRadious }");
         }
         public void Write(StringBuilder sb)
-        { sb.AppendLine("Short Radious: " + ShortRadious + " Long Radious: " + LongRadious); }
+        { sb.AppendLine($"Short Radious: { ShortRadious } Long Radious: { LongRadious}"); }
         /// <summary>
         /// Check if this is bigger then the other
         /// first we check the area
@@ -89,7 +89,11 @@ namespace ShapeLib
         ///         </returns>
         public int CompareTo(Elipse other)
         {
-            return (other.Area - Area != 0) ? (int)Math.Floor(Area - other.Area) :
+            if (other == null)
+            {
+                return 1;
+            }
+            else return (other.Area - Area != 0.0) ? (int)Math.Floor(Area - other.Area) :
                (other.LongRadious - LongRadious != 0) ? LongRadious - other.LongRadious :
                (other.ShortRadious - ShortRadious != 0) ? ShortRadious - other.ShortRadious : 0;
         }

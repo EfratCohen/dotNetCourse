@@ -30,7 +30,7 @@ namespace ShapeLib
         public override void Display()
         {
             Console.ForegroundColor = Color;
-            Console.WriteLine("In this circle radious= " + Radious);
+            Console.WriteLine($"In this circle radious= {Radious}");
         }
     }
 }

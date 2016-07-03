@@ -59,7 +59,7 @@ namespace ShapesApp
             foreach (Shape shape in _shapes)
             {
                 shape.Display();
-                Console.WriteLine("it's area= " + shape.Area);
+                Console.WriteLine($"it's area= {shape.Area}");
             }
         }
         /// <summary>
@@ -70,18 +70,12 @@ namespace ShapesApp
         {
             for (int i = 0; i < _shapes.Count; i++)
             {
-                if (_shapes[i] is Elipse)
+                if (_shapes[i] is IPersist)
                 {
-                    Elipse elipse = (Elipse)_shapes[i];
-                    elipse.Write(sb);
-                }
-                else if (_shapes[i] is Rectangle)
-                {
-                    Rectangle rect = (Rectangle)_shapes[i];
-                    rect.Write(sb);
+                    var shape = (IPersist)_shapes[i];
+                    shape.Write(sb);
                 }
             }
         }
-
     }
 }

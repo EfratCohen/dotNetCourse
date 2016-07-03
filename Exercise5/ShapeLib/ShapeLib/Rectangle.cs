@@ -66,10 +66,10 @@ namespace ShapeLib
         public override void Display()
         {
             base.Display();
-            Console.WriteLine("In this rectangle Height= " + Height + ", Width= " + Width);
+            Console.WriteLine($"In this rectangle Height= { Height }, Width= { Width}");
         }
         public void Write(StringBuilder sb)
-        { sb.AppendLine("Height: " + Height + " Width: " + Width); }
+        { sb.AppendLine($"Height: { Height } Width: { Width}"); }
         /// <summary>
         /// Check if this is bigger then the other
         /// first we compare the area 
@@ -83,7 +83,11 @@ namespace ShapeLib
         ///         </returns>
         public int CompareTo(Rectangle other)
         {
-            return (other.Area - Area != 0) ? (int)Math.Floor(Area - other.Area) :
+             if (other == null)
+                {
+                    return 1;
+                }
+            else return (other.Area - Area != 0.0) ? (int)Math.Floor(Area - other.Area) :
                 (other.Width - Width != 0) ? Width - other.Width :
                 (other.Height - Height != 0) ? Height - other.Height : 0;
         }
