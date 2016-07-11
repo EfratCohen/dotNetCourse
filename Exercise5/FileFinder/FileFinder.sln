@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileFinder", "FileFinder\FileFinder.csproj", "{DEABA2B8-70E5-4E78-BE23-5FE896A0FE6E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileFinder", "FileFinder\FileFinder.csproj", "{4DEE4245-8DD6-40C9-9BB3-7C1A92CAF909}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DEABA2B8-70E5-4E78-BE23-5FE896A0FE6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DEABA2B8-70E5-4E78-BE23-5FE896A0FE6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DEABA2B8-70E5-4E78-BE23-5FE896A0FE6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DEABA2B8-70E5-4E78-BE23-5FE896A0FE6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DEE4245-8DD6-40C9-9BB3-7C1A92CAF909}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DEE4245-8DD6-40C9-9BB3-7C1A92CAF909}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DEE4245-8DD6-40C9-9BB3-7C1A92CAF909}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DEE4245-8DD6-40C9-9BB3-7C1A92CAF909}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
