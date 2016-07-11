@@ -9,7 +9,7 @@ namespace FileFinder
 {
     class FileFinder
     {
-        public List<string> SearchForAllFilesContains(Directory path, string pattren)
+        public List<string> SearchForAllFilesContains(string path, string pattren)
         {
             var filesNames = new List<string>();
             return filesNames;
