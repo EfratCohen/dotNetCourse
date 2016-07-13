@@ -9,7 +9,7 @@ namespace FileFinder
 {
     class Program
     {
-        // Use the first parameter from the command  as a directory path, and search for all files that contain a string passed as the second parameter to the command line. 
+        // Use the first parameter from the command line as a directory path, and search for all files that contain a string passed as the second parameter to the command line. 
         static void Main(string[] args)
         {
             if (args.Length >= 2)
@@ -19,10 +19,10 @@ namespace FileFinder
                 var filesToDisplay = new List<FileInfo>();
                 var finder = new FileFinder();
                 finder.SearchForAllFilesContains(path, patteren, filesToDisplay);
-                Console.WriteLine($"we have found {filesToDisplay.Count} files which contains the string {patteren}");
+                Console.WriteLine($"under the path: \n{path}\n  we have found {filesToDisplay.Count} files which contains the string {patteren}  :");
                 foreach (var file in filesToDisplay)
                 {
-                    Console.WriteLine($"{file.Name} with size (in bytes): {file.Length}");
+                    Console.WriteLine($"{file.Name} in size (in bytes): {file.Length}");
                 }
             }
             else
