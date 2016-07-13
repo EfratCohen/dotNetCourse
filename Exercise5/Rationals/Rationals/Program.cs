@@ -16,43 +16,72 @@ namespace Rationals
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            int instacesNumber = 5;
-            Console.WriteLine("Rationl test with instacesNumber =" + instacesNumber);
+            try
+            {
+                int instacesNumber = 7;
+                Console.WriteLine("Rationl test with instacesNumber =" + instacesNumber);
 
-            Rational[] rationalArray = new Rational[instacesNumber];
-            for (int i = 0; i < instacesNumber; i++)
-            {
-                if (i < instacesNumber / 2)
-                { rationalArray[i] = new Rational(i, i * instacesNumber); }//first c'tor check
-                else { rationalArray[i] = new Rational(i); }                     //second c'tor check
-                Console.WriteLine(rationalArray[i].ToString());                 //ToString check
-            }
-            for (int i = 0; i < instacesNumber; i++)
-            {
-                Console.WriteLine("the rationalArray at index " + i + " has Ratio property of " + rationalArray[i].Ratio);    //Ratio property check
-            }
-            //Add method check //Mul method check//Reduce method check
-            for (int i = 0; i < instacesNumber; i++)
-            {
-                if (i % 2 == 0)
+                Rational[] rationalArray = new Rational[instacesNumber];
+                for (int i = 0; i < instacesNumber; i++)
                 {
-                    rationalArray[i] = rationalArray[i].Add(ref rationalArray[i], ref rationalArray[i]);
-                    Console.Write("Add- ");
+                    if (i > instacesNumber / 2)
+                    {
+                        rationalArray[i] = new Rational(i, i * instacesNumber);
+                    }//first c'tor check
+                    else
+                    {
+                        rationalArray[i] = new Rational(i);
+                    }                     //second c'tor check
+                    Console.WriteLine(rationalArray[i].ToString());                 //ToString check
                 }
-                else
+
+                //from lab 3.2:           
+                /*            for (int i = 0; i < instacesNumber; i++)
+                           {
+                               Console.WriteLine("the rationalArray at index " + i + " has Ratio property of " + rationalArray[i].Ratio);    //Ratio property check
+                           }
+                          //Add method check //Mul method check//Reduce method check
+                           for (int i = 0; i < instacesNumber; i++)
+                           {
+                               if (i % 2 == 0)
+                               {
+                                   rationalArray[i] = rationalArray[i].Add(ref rationalArray[i], ref rationalArray[i]);
+                                   Console.Write("Add- ");
+                               }
+                               else
+                               {
+                                   rationalArray[i] = rationalArray[i].Mul(ref rationalArray[i], ref rationalArray[i]);
+                                   Console.Write("Mul- ");
+                               }
+                               Console.WriteLine(rationalArray[i].ToString());
+                           }
+                           Rational r0 = new Rational(0);
+                           Rational r1 = new Rational(1);
+                           //Equals method check
+                           if (r0.Equals(rationalArray[0])) { Console.WriteLine("r0==rationalArray[0]"); }
+                           else { Console.WriteLine("equls test0 faild"); }
+                           if (!(r1.Equals(rationalArray[1]))) { Console.WriteLine("r1!=rationalArray[1]"); }
+                           else { Console.WriteLine("equls test1 faild"); }
+               */
+                //the Appendix lab:
+                //Check operators for +,-,*,/ for the Rational type
+                for(int i=0; i<instacesNumber/2; i++)
                 {
-                    rationalArray[i] = rationalArray[i].Mul(ref rationalArray[i], ref rationalArray[i]);
-                    Console.Write("Mul- ");
+                    Console.WriteLine($"{rationalArray[i]}+{rationalArray[i+1]}={rationalArray[i] + rationalArray[i + 1]}");
+                    Console.WriteLine($"{rationalArray[i]}-{rationalArray[i+1]}={rationalArray[i] - rationalArray[i + 1]}");
+                    Console.WriteLine($"{rationalArray[i]}*{rationalArray[i+1]}={rationalArray[i] * rationalArray[i + 1]}");
+                    Console.WriteLine($"{rationalArray[i]}/{rationalArray[i+1]}={rationalArray[i] / rationalArray[i + 1]}");
                 }
-                Console.WriteLine(rationalArray[i].ToString());
+                //Check casting operator to double and from an integer
+                for (int i = 0; i < instacesNumber; i++)
+                {
+                    Console.WriteLine($"the {rationalArray[i]} casting to double is {(double)rationalArray[i]}");
+                }
             }
-            Rational r0 = new Rational(0);
-            Rational r1 = new Rational(1);
-            //Equals method check
-            if (r0.Equals(rationalArray[0])) { Console.WriteLine("r0==rationalArray[0]"); }
-            else { Console.WriteLine("equls test0 faild"); }
-            if (!(r1.Equals(rationalArray[1]))) { Console.WriteLine("r1!=rationalArray[1]"); }
-            else { Console.WriteLine("equls test1 faild"); }
+            catch (DivideByZeroException ex0)
+            {
+                Console.WriteLine(ex0.Message);
+            }
         }
 
     }
@@ -73,13 +102,18 @@ namespace Rationals
         /// </summary>
         /// <param name="numerator"></param>
         /// <param name="denominator"></param>
+        /// throw DivideByZeroException if denominator==0
         public Rational(int numerator, int denominator)
         {
             Numerator = numerator;
             if (denominator == 0)
             {
+                throw new DivideByZeroException("we  get an 0 denominator value");
+                //from lab 3.2: (before exeptions)
+                /**
                 Console.WriteLine("error! can't divide by 0!\n we didn't get an appropriate denominator value so we set it defoultly to be 1");
-                Denominator = 1;
+                Denominator = 1
+                **/
             }
             else { Denominator = denominator; }
 
@@ -155,7 +189,7 @@ namespace Rationals
         /// <returns>string with the instance type +brief description of it's field's value </returns>
         public override string ToString()
         {
-            return $"Ratinals.rational with value= {this.Numerator.ToString() }/{ this.Denominator}";
+            return $"{this.Numerator.ToString() }/{ this.Denominator}";
         }
         /// <summary>
         /// Override Equals with appropriate implementation
@@ -196,6 +230,7 @@ namespace Rationals
         {
             return base.GetHashCode();
         }
+        //the Appendix lab:
         //Add operators for +,-,*,/ for the Rational type
         public static Rational operator +(Rational r1, Rational r2)
         {
