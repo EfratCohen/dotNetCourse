@@ -77,6 +77,9 @@ namespace Rationals
                 {
                     Console.WriteLine($"the {rationalArray[i]} casting to double is {(double)rationalArray[i]}");
                 }
+                Rational[] rationalArray2 = new Rational[1];
+                Console.WriteLine($"{rationalArray2[0]}");
+                var r=rationalArray[0] * rationalArray2[0];
             }
             catch (DivideByZeroException ex0)
             {
@@ -88,7 +91,7 @@ namespace Rationals
     struct Rational
     {   //Field and their properties
         int Numerator { get; set; }
-        int Denominator { get; set; }
+        int Denominator { get; set; } 
         public double Ratio
         {
             get
