@@ -1,0 +1,3 @@
+﻿1>------ Build started: Project: DynInvoke, Configuration: Debug Any CPU ------
+1>  DynInvoke -> C:\Users\Efrat\Desktop\DotNetCourse\Git\dotNetCourse\Exercise6\DynInvoke\DynInvoke\bin\Debug\DynInvoke.exe
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
