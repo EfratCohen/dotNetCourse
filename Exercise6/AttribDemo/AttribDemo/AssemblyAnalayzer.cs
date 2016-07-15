@@ -20,11 +20,10 @@ namespace AttribDemo
         {
             var inputsTypes = asm.GetTypes();
             inputsTypes=inputsTypes.Where(type => type.IsClass || type.IsValueType).ToArray<Type>();
-            Console.WriteLine($"in the assembly we get {inputsTypes.Count()} relevant types:");
+            Console.WriteLine($"in the assembly we get we have {inputsTypes.Count()} relevant types \n");
             foreach (var type in inputsTypes)
             {
                 var codeReviews = type.GetCustomAttributes(typeof(CodeReviewAttribute));
-                Console.WriteLine($"the type {type} has {codeReviews.Count()} CodeReviewAttributes: ");
                 foreach (var codeReview in codeReviews)
                 {
                     CodeReviewAttribute thisReview =(CodeReviewAttribute)codeReview;

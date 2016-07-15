@@ -22,6 +22,7 @@ namespace AttribDemo
             Assembly[] asembliesForAnalaize = { myAssembly, otherAssembly };
             foreach (var asm in asembliesForAnalaize)
             {
+                Console.WriteLine($"we run the AnalayzeAssembly method on the asemblly {asm.ToString()} \n");
                 if (myAssemblyAnalayzer.AnalayzeAssembly(asm))
                 {
                     Console.WriteLine("all the attributed types in the assembly we get was approved");
