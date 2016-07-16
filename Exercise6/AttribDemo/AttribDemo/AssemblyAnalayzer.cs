@@ -27,7 +27,8 @@ namespace AttribDemo
                 foreach (var codeReview in codeReviews)
                 {
                     CodeReviewAttribute thisReview =(CodeReviewAttribute)codeReview;
-                    Console.WriteLine($"the reviewer name: {thisReview.ReviewerName} the review date: {thisReview.ReviewDate} is the code approved?: {thisReview.IsTheCodeApproved}");
+                    Console.WriteLine($"CodeReview about type {type}");
+                    Console.WriteLine($"reviewer name: {thisReview.ReviewerName} the review date: {thisReview.ReviewDate} is the code approved?: {thisReview.IsTheCodeApproved}");
                     if (!thisReview.IsTheCodeApproved)
                     {
                         return false;

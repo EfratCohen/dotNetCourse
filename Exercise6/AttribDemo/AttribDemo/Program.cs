@@ -31,9 +31,7 @@ namespace AttribDemo
                 {
                     Console.WriteLine(" not all the attributed types in the assembly we get was approved");
                 }
-            }
-            
-             
+            }        
         }
     }
 }

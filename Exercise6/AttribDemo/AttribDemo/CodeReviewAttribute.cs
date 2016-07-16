@@ -23,5 +23,4 @@ namespace AttribDemo
             IsTheCodeApproved = approved;
         }
     }
-
 }
