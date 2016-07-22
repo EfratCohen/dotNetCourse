@@ -31,10 +31,7 @@ namespace Lab4_1
         {
 
             var mscrlibAssembly = typeof(string).Assembly;
-                foreach (Type ti in mscrlibAssembly.GetTypes().Where(x => (x.IsInterface&&x.IsPublic)).OrderBy(o=>o.Name))
-                {
-                    yield return ti; 
-                }
+               return (mscrlibAssembly.GetTypes().Where(x => (x.IsInterface&&x.IsPublic)).OrderBy(o=>o.Name));
             }
         }
         /// <summary>
