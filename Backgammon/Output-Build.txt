@@ -1,0 +1,10 @@
+﻿1>------ Build started: Project: Backgammon, Configuration: Debug Any CPU ------
+1>C:\Users\Efrat\Desktop\DotNetCourse\Git\dotNetCourse\Backgammon\Backgammon\GameManneger.cs(361,42,361,45): error CS1525: Invalid expression term 'int'
+1>C:\Users\Efrat\Desktop\DotNetCourse\Git\dotNetCourse\Backgammon\Backgammon\ComputerBackgamonPlayer.cs(13,38,13,39): error CS1525: Invalid expression term ')'
+1>C:\Users\Efrat\Desktop\DotNetCourse\Git\dotNetCourse\Backgammon\Backgammon\GameManneger.cs(361,46,361,56): error CS1003: Syntax error, ',' expected
+1>C:\Users\Efrat\Desktop\DotNetCourse\Git\dotNetCourse\Backgammon\Backgammon\GameManneger.cs(361,58,361,61): error CS1525: Invalid expression term 'int'
+1>C:\Users\Efrat\Desktop\DotNetCourse\Git\dotNetCourse\Backgammon\Backgammon\GameManneger.cs(361,62,361,72): error CS1003: Syntax error, ',' expected
+1>C:\Users\Efrat\Desktop\DotNetCourse\Git\dotNetCourse\Backgammon\Backgammon\GameManneger.cs(361,73,361,73): error CS1002: ; expected
+2>------ Build started: Project: BackgammonConsoleUI, Configuration: Debug Any CPU ------
+2>C:\Users\Efrat\Desktop\DotNetCourse\Git\dotNetCourse\Backgammon\BackgammonConsoleUI\BackgammonUI.cs(21,34,21,51): error CS0103: The name '_backgamonManager' does not exist in the current context
+========== Build: 0 succeeded, 2 failed, 0 up-to-date, 0 skipped ==========

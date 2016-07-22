@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9B6B6437-1703-4F52-8645-ACBAD46E53EF}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{9DB515AA-F3A5-4B1A-A423-B066EF5A7FAF}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Backgammon</RootNamespace>
-    <AssemblyName>Backgammon</AssemblyName>
+    <RootNamespace>BackgammonConsoleUI</RootNamespace>
+    <AssemblyName>BackgammonConsoleUI</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -40,16 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ComputerBackgamonPlayer.cs" />
-    <Compile Include="Dice.cs" />
-    <Compile Include="Die.cs" />
-    <Compile Include="GameBoard.cs" />
-    <Compile Include="GameManneger.cs" />
-    <Compile Include="GameStoneMovement.cs" />
-    <Compile Include="IbackgamonUi.cs" />
-    <Compile Include="Iplayer.cs" />
-    <Compile Include="PlayerStone.cs" />
+    <Compile Include="BackgammonUI.cs" />
+    <Compile Include="ConsoleUiTools.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="ProgramHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StoneslePrintInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Backgammon\Backgammon.csproj">
+      <Project>{9b6b6437-1703-4f52-8645-acbad46e53ef}</Project>
+      <Name>Backgammon</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
