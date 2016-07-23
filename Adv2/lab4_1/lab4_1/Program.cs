@@ -52,8 +52,7 @@
             var myOtherChecker = new Checker("XX", 7, "YYY");
             Console.WriteLine($" myChecker {myChecker} \n myOtherChecker {myOtherChecker}");
             myOtherChecker.CopyTo(myChecker);
-            Console.WriteLine($"After copy: \n myChecker {myChecker} \n myOtherChecker {myOtherChecker}");
-            
+            Console.WriteLine($"After copy: \n myChecker {myChecker} \n myOtherChecker {myOtherChecker}");    
         }
     }
 }

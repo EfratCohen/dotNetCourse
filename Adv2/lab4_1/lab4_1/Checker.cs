@@ -30,8 +30,6 @@ namespace lab4_1
         {
             return $"{this.GetType()}   Name:{Name}   Id:{Id}   Secret:{this.ReadSecret()}";
         }
-
-
         public DateTime StartTimeReturnIfCan(Process p)
         {
             try

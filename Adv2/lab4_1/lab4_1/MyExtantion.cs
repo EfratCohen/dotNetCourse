@@ -26,7 +26,6 @@ namespace lab4_1
                     Where(sPi => (targetProperties.Any(tPi => (tPi.Name == sPi.Name && tPi.PropertyType == sPi.PropertyType)))))
                 {
                     var targetPropInfo = targetType.GetProperty(sourcePropInfo.Name);
-
                     targetPropInfo.SetValue(target, sourcePropInfo.GetValue(source));
                 }
             }
