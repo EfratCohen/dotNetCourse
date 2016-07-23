@@ -9,7 +9,7 @@ namespace Lab4_1
     class Program
     {
         /// <summary>
-        /// 1
+        /// 1.
         ///  Create queries and display results for the following:
         ///  a. Display all the public interface names in the mscorlib assembly and the number of methods in each type. 
         ///  Sort by type name. 
@@ -23,13 +23,29 @@ namespace Lab4_1
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            var myDisplayer = new LinQDisplayer();
-            var myItrerator =  myDisplayer.GetPublicInterfaceName();
-            foreach (var item in myItrerator)
+            var myLinQuser = new LinQDisplayer();
+            //a.
+            var myPublicInterfaceItrerator = myLinQuser.PublicInterface();
+            foreach (var item in myPublicInterfaceItrerator)
             {
                 Console.WriteLine(item);
             } 
-             
+            //b.
+            var myChecker = new Checker();
+            var myRunningProcessItrerator = myLinQuser.RunningProcess();
+            foreach (var item in myRunningProcessItrerator)
+            {
+                //item.StartTime
+                Console.WriteLine("name:{0,5} id: {1,5} start time: {2,5} ", item.ProcessName, item.Id, myChecker.StartTimeReturnIfCan(item));
+            }
+            //c.
+            var myExtendRunningProcessItrerator = myLinQuser.RunningProcessExtend(myRunningProcessItrerator);
+            foreach (var item in myExtendRunningProcessItrerator)
+            {
+                Console.WriteLine(item);
+            }
+            //d.
+            Console.WriteLine("the total number of threads in the system is {0,5}",myLinQuser.TotalSystemThreadsNumber());
         }
     }
 }
