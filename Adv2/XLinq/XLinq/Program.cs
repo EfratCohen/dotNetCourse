@@ -104,11 +104,10 @@ namespace XLinq
                                     let methodsNo = publicClass.Descendants("Method").Count()
                                     orderby methodsNo descending
                                     select new
-                                    {
-                                        TypeName = (string)publicClass.Attribute("FullName"),
-                                        MethodsNo = methodsNo,
-                                        PropertiesNo = publicClass.Descendants("Property").Count()
-                                    };
+                                    XElement("Type",
+                                    new XAttribute("TypeName", (string)publicClass.Attribute("FullName")),
+                                    new XAttribute("MethodsNo" ,methodsNo),
+                                    new XAttribute ( "PropertiesNo" ,publicClass.Descendants("Property").Count()));
             var mscorlibTypesConters = new XElement("typesMethodPropNo", typesMethodPropNo);
             mscorlibTypesConters.Save("file4check2.xml");
             ///3.
@@ -125,7 +124,8 @@ namespace XLinq
                                       } by methodsNo
                                            into methodsNoGroup
                                       orderby methodsNoGroup.Key descending
-                                      select methodsNoGroup;
+                                      select new
+                                      XElement ("Group",methodsNoGroup);
             var mscorlibTypesGroups = new XElement("methodsNoGroupTypes", methodsNoGroupTypes);
             mscorlibTypesGroups.Save("file4check3.xml");
         }
