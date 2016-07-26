@@ -10,7 +10,7 @@ namespace BackgammonConsoleUI
 {
     public class ConsoleUiTools
     {
-        public void ConsoleBoardConfigPrint(GameBoard board, List<PlayPieceMovement> nextLegalMoves)
+        public void ConsoleBoardConfigPrint(GameBoard board)
         {
             //setup//********************************************************
             PiecesPointPrintInfo[][] tringlesInfo = new PiecesPointPrintInfo[4][];
@@ -58,16 +58,15 @@ namespace BackgammonConsoleUI
             boardPrint(tringlesInfo, homesInfo, prisonsInfo);
 
         }
-        //private methods:
+        //private methods,help-tools :
         void boardPrint(PiecesPointPrintInfo[][] tringlesInfo, PiecesPointPrintInfo[] homesInfo, PiecesPointPrintInfo[] prisonsInfo)
         {
-
-            ///consts:***********************Do Not Touch!*******************
+            ///consts:*******************************************************
             var gap = String.Format($"|XXXXXXXXXXXXXXXXXXXXXXXXXXX|");
             var borderLine = String.Format($"----------------------------------");
             var index2 = String.Format($"{13}{14}{15}{16}{17}{18}| 25|{19}{20}{21}{22}{23}{24}");
             var index1 = String.Format($"{12}{11}{10} {9} {8} {7}| 0 |{6} {5} {4} {3} {2} {1}");
-            ///**************************************************************
+            ///print:********************************************************
             Console.WriteLine(borderLine);
             Console.WriteLine(index2);
             for (int i = 0; i < 5; i++) { RowPrint(tringlesInfo[0], tringlesInfo[1], homesInfo[0], prisonsInfo[0]); }
@@ -78,23 +77,23 @@ namespace BackgammonConsoleUI
         }
         void RowPrint(PiecesPointPrintInfo[] leftTringleInfo, PiecesPointPrintInfo[] rightTringleInfo, PiecesPointPrintInfo homeInfo, PiecesPointPrintInfo prisonInfo)
         {
-            ///consts:***********************Do Not Touch!*******************
+            ///consts:*******************************************************
             var tringleStoneCell = string.Format($"| {0}");
             var home = string.Format($"||{1}{1}{1}");
             var endRow = "|\n";
             ///**************************************************************
             for (int i = 0; i < 6; i++)
             {
-                TringleStoneCellPrint(leftTringleInfo[i]);
+                PiecesPointCellPrint(leftTringleInfo[i]);
             }
             Console.ForegroundColor = ConsoleColor.Gray;
-            PrisonStone3CellsPrint(prisonInfo);//Console.Write(prison);
+            PrisonStone3CellsPrint(prisonInfo);
             for (int i = 0; i < 6; i++)
             {
-                TringleStoneCellPrint(rightTringleInfo[i]);
+                PiecesPointCellPrint(rightTringleInfo[i]);
             }
             Console.ForegroundColor = ConsoleColor.Gray;
-            HomeStone3CellsPrint(homeInfo);//Console.Write(home);
+            Home3PiecesCellsPrint(homeInfo);
             Console.Write(endRow);
         }
         void SetDefaultConsole()
@@ -102,13 +101,19 @@ namespace BackgammonConsoleUI
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.BackgroundColor = ConsoleColor.Black;
         }
-        void SetStonePrintBackground(bool isOrig, bool isDest)
+        /// <summary>
+        /// I didn't uses this fiture in this app beacause I Dicided it is unnecessary.
+        /// actually, the param flags in all the caaling to this method are always false. 
+        /// </summary>
+        /// <param name="isPrevPoint"></param>
+        /// <param name="isDest"></param>
+        void SetPiecePrintBackground(bool isPrevPoint, bool isDest)
         {
             if (isDest)
             {
                 Console.BackgroundColor = ConsoleColor.DarkGreen;
             }
-            else if (isOrig)
+            else if (isPrevPoint)
             {
                 Console.BackgroundColor = ConsoleColor.DarkGray;
             }
@@ -117,7 +122,7 @@ namespace BackgammonConsoleUI
                 Console.BackgroundColor = ConsoleColor.Black;
             }
         }
-        void TringleStoneCellPrint(PiecesPointPrintInfo inf)
+        void PiecesPointCellPrint(PiecesPointPrintInfo inf)
         {
             int stone = 0;
             Console.ForegroundColor = ConsoleColor.Gray;
@@ -136,7 +141,7 @@ namespace BackgammonConsoleUI
                 {
                     Console.ForegroundColor = ConsoleColor.White;
                 }
-                SetStonePrintBackground(inf.IsOrig, inf.IsDest);
+                SetPiecePrintBackground(inf.IsOrig, inf.IsDest);
             }
             else
             {
@@ -147,7 +152,7 @@ namespace BackgammonConsoleUI
             Console.Write($"{stone}");
             SetDefaultConsole();
         }
-        void HomeStone3CellsPrint(PiecesPointPrintInfo inf)
+        void Home3PiecesCellsPrint(PiecesPointPrintInfo inf)
         {
             int cell = 1;
             if (inf.Counter > 0)
@@ -159,7 +164,7 @@ namespace BackgammonConsoleUI
                     {
                         cell = 0;
                         Console.ForegroundColor = (inf.IsRed) ? ConsoleColor.Red : ConsoleColor.White;
-                        SetStonePrintBackground(false, inf.IsDest);
+                        SetPiecePrintBackground(false, inf.IsDest);
                         inf.Counter--;
                     }
                     else
@@ -188,7 +193,7 @@ namespace BackgammonConsoleUI
                     {
                         cell = 0;
                         Console.ForegroundColor = (inf.IsRed) ? ConsoleColor.Red : ConsoleColor.White;
-                        SetStonePrintBackground(inf.IsOrig, false);
+                        SetPiecePrintBackground(inf.IsOrig, false);
                         inf.Counter--;
                     }
                     else
@@ -205,19 +210,19 @@ namespace BackgammonConsoleUI
                 Console.Write($"|{8}{8}{8}");
             }
         }
-        void invkeInfo(PiecesPointPrintInfo inf, List<PlayerPiece> boardtriangle)
+        void invkeInfo(PiecesPointPrintInfo inf, List<PlayerPiece> piecesPoint)
         {
-            if (boardtriangle.Count > 5)
+            if (piecesPoint.Count > 5)
             {
                 inf.IsCounterIsMoreThen5 = true;
                 inf.Counter = 5;
-                inf.RealNuber = boardtriangle.Count;
+                inf.RealNuber = piecesPoint.Count;
             }
             else
             {
-                inf.Counter = boardtriangle.Count;
+                inf.Counter = piecesPoint.Count;
             }
-            if (boardtriangle.Count > 0 && boardtriangle[0].IsPlayer1Piece)
+            if (piecesPoint.Count > 0 && piecesPoint[0].IsPlayer1Piece)
             {
                 inf.IsRed = true;
             }

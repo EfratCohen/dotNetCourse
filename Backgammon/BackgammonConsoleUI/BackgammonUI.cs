@@ -7,21 +7,25 @@ using System.Threading.Tasks;
 
 namespace BackgammonConsoleUI
 {
-    /// <summary>
-    /// Use the Console for the UI. 
-    /// You can leverage properties such as ForegroundColor and BackgroundColor to display something reasonable.
-    /// </summary>
     class BackgammonUI :IBackgamonUi
     {
         ConsoleUiTools _consoleDisplayTool = new ConsoleUiTools();
 
         public void AfterGameBoardChange(GameBoard board)
         {
-            _consoleDisplayTool.ConsoleBoardConfigPrint(board, null);
+            _consoleDisplayTool.ConsoleBoardConfigPrint(board);
         }
         public void AfterDiceRoll(int die_1Value, int die_2Value)
         {
-            Console.WriteLine($"The dice's roll gave us the values: {die_1Value} , {die_2Value} \n");
+            Console.Write($"The dice's roll gave us the values: ");
+            Console.BackgroundColor = ConsoleColor.DarkMagenta;
+            Console.Write($"{die_1Value}");
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.Write(" , ");
+            Console.BackgroundColor = ConsoleColor.DarkMagenta;
+            Console.Write($"{die_2Value}");
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.Write(" \n\n");
         }
         public void StartNewPlayerTurn(bool isPlayer_1_turn)
         {
@@ -48,7 +52,9 @@ namespace BackgammonConsoleUI
             Console.WriteLine($"    the game is over. {winner} wins!");
             if (isMars)
             {
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("     it was a mars!");
+                Console.ForegroundColor = ConsoleColor.Gray;
             }
         }
     }
