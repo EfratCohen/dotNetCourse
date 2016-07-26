@@ -9,18 +9,6 @@ namespace BackgammonConsoleUI
 {
     class Program
     {
-        static void cMain(string[] args)
-        {
-            Console.WriteLine("sketch");
-            ConsoleUiTools tool = new ConsoleUiTools();
-            GameBoard game = new GameBoard();
-            game.Player_1_FinalDestination.Add(new PlayerPiece(true));
-            game.Player_2_FinalDestination.Add(new PlayerPiece(false));
-            game.Player_2Prison.Add(new PlayerPiece(false));
-            tool.ConsoleBoardConfigPrint(game,null);
-
-        }
-
         static void Main(string[] args)
         {
             var ui = new BackgammonUI();
@@ -30,10 +18,10 @@ namespace BackgammonConsoleUI
             var progHelp = new ProgramHelper();
             string inputMessage;
             int gameScore=0;
-            Console.WriteLine(" Wellcom to Backgammon Game!");
+            Console.WriteLine("\n Wellcom to Backgammon Game! \n");
             do {
-                Console.WriteLine("What do you wish? please enter 'friend' to play with other user,\n 'comp' to play against the computer \n or 'movie' to see the computer play against itself");
-                Console.WriteLine(" in any stage, if you wish to exit , you can enter the string 'esc'.");
+                Console.WriteLine("What do you wish?\n Please enter 'friend' to play with other user,\n 'comp' to play against the computer, \n or 'movie' to see the computer play against itself.");
+                Console.WriteLine(" # in any stage, if you wish to exit , you can enter the string 'esc'.");
                 inputMessage = Console.ReadLine();
                 try
                 {
@@ -58,22 +46,25 @@ namespace BackgammonConsoleUI
                 {
                     if (appEx.Message == "the player pressed 'esc'")
                     {
-                        Console.WriteLine("goodbuy:)");
+                        Console.WriteLine("     goodbuy :)");
                         break;
                     }
                     else throw appEx;
                 }
+                
                 if (gameScore > 0)
                 {
-                    Console.WriteLine($" player 1 wins with {gameScore} score in this game");
+                    Console.WriteLine($" player_1 got +{gameScore} to his game-score in this game.\n");
+
                 }
                 else if (gameScore < 0)
                 {
-                    Console.WriteLine($" player 2 wins with {-gameScore} score in this game");
+                    Console.WriteLine($" player_2 got +{-gameScore} to his game-score in this game.\n");
                 }
+
                 if (inputMessage != "esc")
                 {
-                    Console.WriteLine("to exit the game prees 'esc', \n for another such game press any key");
+                    Console.WriteLine(" # to exit the game prees 'esc', \n for another such game press any key.");
                     inputMessage = Console.ReadLine();
                 }
             } while (progHelp.ToContinue(inputMessage));

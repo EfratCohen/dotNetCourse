@@ -12,7 +12,7 @@ namespace BackgammonConsoleUI
         {
             if (inputMessage == "esc")
             {
-                Console.WriteLine("goodbuy :)");
+                Console.WriteLine("     goodbuy :)");
                 return false;
             }
             else

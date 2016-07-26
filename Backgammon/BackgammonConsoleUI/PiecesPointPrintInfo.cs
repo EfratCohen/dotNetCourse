@@ -15,12 +15,12 @@ namespace BackgammonConsoleUI
         public bool IsOrig { get; set; } = false;
         public bool IsDest { get; set; } = false;
 
-        public PiecesPointPrintInfo(int counter, bool isRed, bool iscounterIsMoreThen5, int realNumber)
+        public PiecesPointPrintInfo(int counter, bool isRed, bool isCounterIsMoreThen5, int realNumber)
         {
             Counter = counter;
             RealNuber = realNumber;
             IsRed = isRed;
-            IsCounterIsMoreThen5 = iscounterIsMoreThen5;
+            IsCounterIsMoreThen5 = isCounterIsMoreThen5;
         }
         public PiecesPointPrintInfo(int counter, bool isRed, bool iscounterIsMoreThen5, int realNumber, bool isOrig, bool isDest)
             : this(counter, isRed, iscounterIsMoreThen5, realNumber)
@@ -29,8 +29,6 @@ namespace BackgammonConsoleUI
             IsDest = isDest;
         }
         public PiecesPointPrintInfo(int counter, bool isOrig, bool isDest) : this(counter, false, false, 0, isOrig, isDest) { }
-        public PiecesPointPrintInfo()
-        {
-        }
+        public PiecesPointPrintInfo(){}
     }
 }

@@ -25,9 +25,9 @@ namespace BackgammonConsoleUI
                 DisplayMovementsList(nextLegalMoves);
             do
             {
-                Console.WriteLine("please enter the the move you prefer : {previous point} {destination point}");
-                Console.WriteLine($" if prison is the previous point enter {prisonIndex} \n if bear-out is the destination enter {25 - prisonIndex} ");
-                Console.WriteLine("if you want to exit the game now you can enter 'esc'");
+                Console.WriteLine("please enter the the move you prefer : {previous point} {destination point}.");
+                Console.WriteLine($"- if the prison is your move's previous point enter {prisonIndex},\n- if bear-out your move's  destination enter {25 - prisonIndex}.");
+                Console.WriteLine(" # if you want to exit the game now you can enter 'esc'.");
                 inputMessage = Console.ReadLine();
                 inputMessage.Trim();
                 if (inputMessage == "esc")
@@ -37,13 +37,13 @@ namespace BackgammonConsoleUI
                 var inputs = inputMessage.Split(' ');
                 if (!(inputs.Length == 2 && (int.TryParse(inputs[0], out prevPoint) && int.TryParse(inputs[1], out dest))))
                 {
-                    Console.WriteLine("we got wrong input. try again please");
+                    Console.WriteLine(" We got wrong input. try again please.\n");
                     continue;
                 }
                 notLegalMove = !nextLegalMoves.Any(move => (move.PieceDestination == dest && move.PiecePrevPoint == prevPoint&&move.IsPlayer_1_Move==isPlayer_1));
                 if (notLegalMove)
                 {
-                    Console.WriteLine("the chosen move is not legal .try again please");
+                    Console.WriteLine(" The chosen move is not legal. try again please.\n");
                 }
                 else
                 {
@@ -56,16 +56,16 @@ namespace BackgammonConsoleUI
         }
         private void DisplayMovementsList(List<PlayPieceMovement> nextLegalMoves)
         {
-            Console.WriteLine(" here are the option for the next legal movement :");
+            Console.WriteLine(" Dear player, for your next legal movement, here are the options :");
             for(int i = 0; i < nextLegalMoves.Count; i++ )
             {
                 if (i == 0)
                 {
-                    Console.WriteLine($"you can move a stone from: {nextLegalMoves[i].PiecePrevPoint }  to: {nextLegalMoves[i].PieceDestination}");
+                    Console.WriteLine($" you can move a stone from: {nextLegalMoves[i].PiecePrevPoint }  to: {nextLegalMoves[i].PieceDestination}");
                 }
                 else
                 {
-                    Console.WriteLine($"                  or from:{nextLegalMoves[i].PiecePrevPoint }  to: {nextLegalMoves[i].PieceDestination}");
+                    Console.WriteLine($"                   or from:{nextLegalMoves[i].PiecePrevPoint }  to: {nextLegalMoves[i].PieceDestination}");
                 }
             }
         }
