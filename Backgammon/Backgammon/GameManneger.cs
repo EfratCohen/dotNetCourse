@@ -105,14 +105,14 @@ namespace Backgammon
                         suggestions.Add(new GameStoneMovement(_isPlayer_1turn, dieValue, 0));
                     }
                 }
-                else //there is no stone Beforebase.
+                else //there is no stone in the prison.
                 {
-                    for (int orig = 1; orig + dieValue < 25; orig++) //to promote a stone in the board tringles
+                    for (int prevPlace = 1; prevPlace + dieValue < 25; prevPlace++) //to promote a stone in the board tringles
                     {
-                        if (((_board.Boardtriangles[orig - 1].Count>0&& _board.Boardtriangles[orig - 1][0].IsPlayer1Stone==_isPlayer_1turn))
-                        && ((_board.Boardtriangles[dieValue + orig - 1].Count < 2) || (_board.Boardtriangles[dieValue + orig - 1][0].IsPlayer1Stone == _isPlayer_1turn)))
+                        if (((_board.Boardtriangles[prevPlace - 1].Count>0 && _board.Boardtriangles[prevPlace - 1][0].IsPlayer1Stone==_isPlayer_1turn))
+                        && ((_board.Boardtriangles[dieValue + prevPlace - 1].Count < 2) || (_board.Boardtriangles[dieValue + prevPlace - 1][0].IsPlayer1Stone == _isPlayer_1turn)))
                         {
-                            suggestions.Add(new GameStoneMovement(_isPlayer_1turn, dieValue + orig, orig));
+                            suggestions.Add(new GameStoneMovement(_isPlayer_1turn, dieValue + prevPlace, prevPlace));
                         }
                     }
                     int stonesInDest = 0;//Check if is it the time to move out stones from the board tringles to the destinayion
@@ -147,13 +147,13 @@ namespace Backgammon
                 }
                 else //there is no stone Beforebase.
                 {
-                    for (int orig = 24; orig - dieValue > 0; orig--) //to promote a stone in the board tringles
+                    for (int orig = 24 - dieValue; orig > 0; orig--) //to promote a stone in the board tringles
                     {
                         if (((_board.Boardtriangles[orig - 1].Count > 0 && _board.Boardtriangles[orig - 1][0].IsPlayer1Stone == _isPlayer_1turn))
-                        && ((_board.Boardtriangles[dieValue - orig - 1].Count < 2) || (_board.Boardtriangles[dieValue - orig - 1][0].IsPlayer1Stone == _isPlayer_1turn)))
-                        {
+                        && ((_board.Boardtriangles[dieValue + orig - 1].Count < 2) || (_board.Boardtriangles[dieValue + orig - 1][0].IsPlayer1Stone == _isPlayer_1turn)))
+                            {
                             suggestions.Add(new GameStoneMovement(_isPlayer_1turn, orig - dieValue, orig));
-                        }
+                            } 
                     }
                     int stonesInDest = 0;//Check if is it the time to move out stones from the board tringles to the destinayion
                     for (int i = 0; i < 6; i++)
@@ -220,23 +220,41 @@ namespace Backgammon
         /// <returns></returns>
         private IsGameVictory MakeMove(GameStoneMovement playerLegalDesition)
         {
-            _board.Boardtriangles[playerLegalDesition.StoneOriginTringle - 1].Remove(new PlayerStone(playerLegalDesition.IsPlayer_1_Move));
-            if (_board.Boardtriangles[playerLegalDesition.StoneDestinationTringle - 1].Count > 0 && _board.Boardtriangles[playerLegalDesition.StoneDestinationTringle - 1][0].IsPlayer1Stone == !playerLegalDesition.IsPlayer_1_Move)
-            {
-                if (playerLegalDesition.IsPlayer_1_Move)
-                {
-                    _board.Player_1Prison.Add(new PlayerStone(playerLegalDesition.IsPlayer_1_Move));
-                }
-                else
-                {
-                    _board.Player_2Prison.Add(new PlayerStone(playerLegalDesition.IsPlayer_1_Move));
-                }
-            }
-            if (playerLegalDesition.StoneDestinationTringle < 25)
-            {
-                _board.Boardtriangles[playerLegalDesition.StoneDestinationTringle - 1].Add(new PlayerStone(playerLegalDesition.IsPlayer_1_Move));
+        //remove the stone sign from its previous place
+            if (playerLegalDesition.StoneSource>0 && playerLegalDesition.StoneSource<25)
+            {//case the previous place was rgular tringle
+                _board.Boardtriangles[playerLegalDesition.StoneSource - 1].RemoveRange(0, 1);
             }
             else
+            {//case the previous place was the prison
+                if (playerLegalDesition.StoneSource ==0)
+                {
+                    _board.Player_1Prison.RemoveRange(0,1);
+                }
+                else //playerLegalDesition.StoneOriginTringle==25
+                {
+                    _board.Player_2Prison.RemoveRange(0, 1);
+                }
+            }
+            //add the stone sign to its destination place
+            if (playerLegalDesition.StoneDestination < 25&& playerLegalDesition.StoneDestination > 0)//case the destination is a regular tringle
+            {
+                if (_board.Boardtriangles[playerLegalDesition.StoneDestination - 1].Count > 0 &&
+                _board.Boardtriangles[playerLegalDesition.StoneDestination - 1][0].IsPlayer1Stone == !playerLegalDesition.IsPlayer_1_Move)
+                {//there was a stone of the otherplayer in the destination 
+                    _board.Boardtriangles[playerLegalDesition.StoneDestination-1].RemoveRange(0, 1); // take this stone to the prison
+                    if (playerLegalDesition.IsPlayer_1_Move)
+                    {
+                        _board.Player_1Prison.Add(new PlayerStone(playerLegalDesition.IsPlayer_1_Move));
+                    }
+                    else
+                    {
+                        _board.Player_2Prison.Add(new PlayerStone(playerLegalDesition.IsPlayer_1_Move));
+                    }
+                }
+                _board.Boardtriangles[playerLegalDesition.StoneDestination - 1].Add(new PlayerStone(playerLegalDesition.IsPlayer_1_Move));
+            }
+            else // case the desination is the home/final detination
             {
                 if (playerLegalDesition.IsPlayer_1_Move)
                 {
@@ -246,7 +264,7 @@ namespace Backgammon
                 {
                     _board.Player_2_FinalDestination.Add(new PlayerStone(playerLegalDesition.IsPlayer_1_Move));
                 }
-            }
+            }// check and return the move resaults
             if (_isPlayer_1turn && _board.Player_1_FinalDestination.Count == 15)
             {
                 return IsGameVictory.player1wins;
@@ -260,6 +278,13 @@ namespace Backgammon
                 return IsGameVictory.noneWins;
             }
         }
+        /// <summary>
+        /// this ethod return the score of each game after the game over
+        /// according to the params flag
+        /// </summary>
+        /// <param name="isPlayer_1Victory"></param>
+        /// <param name="wasMars"></param>
+        /// <returns></returns>
         private int GameScore(bool isPlayer_1Victory, bool wasMars)
         {
             if (isPlayer_1Victory)
@@ -302,11 +327,17 @@ namespace Backgammon
                 playerTurnDiceValues = PlayerTurnDiceValues(diceValues[0], diceValues[1]);
                 do
                 {
-                    List<GameStoneMovement> nextLegalMoves = NextGameMoveSuggest(diceValues[doneMovesNo]);
+                    List<GameStoneMovement> nextLegalMoves = NextGameMoveSuggest(playerTurnDiceValues[doneMovesNo]);
                     var nextMove = player.NextGameMoveChose(nextLegalMoves, _isPlayer_1turn);
+                    if (nextMove == null)
+                    {
+                        Console.WriteLine("no move.there is no legal move to do ");
+                        doneMovesNo++;
+                        continue;
+                    }
                     _gameOver = MakeMove(nextMove);
                     doneMovesNo++;
-                    if (_gameOver != IsGameVictory.noneWins)
+                    if (_gameOver != null&&_gameOver != IsGameVictory.noneWins)
                     {
                         ui.AfterGameBoardChange(_board);
                         if ((_isPlayer_1turn && _board.Player_2_FinalDestination.Count == 0) || (!_isPlayer_1turn && _board.Player_1_FinalDestination.Count == 0))

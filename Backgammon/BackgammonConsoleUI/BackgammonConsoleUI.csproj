@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="BackgammonUI.cs" />
     <Compile Include="ConsoleUiTools.cs" />
+    <Compile Include="HumanBackgamonPlayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgramHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

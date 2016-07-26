@@ -57,7 +57,7 @@ namespace BackgammonConsoleUI
             boardPrint(tringlesInfo, homesInfo, prisonsInfo);
 
         }
-
+        //private methods:
         void boardPrint(StoneslePrintInfo[][] tringlesInfo, StoneslePrintInfo[] homesInfo, StoneslePrintInfo[] prisonsInfo)
         {
 
@@ -121,12 +121,12 @@ namespace BackgammonConsoleUI
 
             if (inf != null && inf.Counter > 0)
             {
+                if (inf.Counter == 1 && inf.IsCounterIsMoreThen5)
+                { stone = inf.RealNuber - 4; }
+                inf.Counter--;
                 if (inf.IsRed)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    if (inf.Counter == 1 && inf.IsCounterIsMoreThen5)
-                    { stone = inf.RealNuber - 4; }
-                    inf.Counter--;
+                    Console.ForegroundColor = ConsoleColor.Red;                    
                 }
                 else
                 {
