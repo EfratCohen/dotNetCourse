@@ -45,10 +45,10 @@
     <Compile Include="Die.cs" />
     <Compile Include="GameBoard.cs" />
     <Compile Include="GameManneger.cs" />
-    <Compile Include="GameStoneMovement.cs" />
     <Compile Include="IbackgamonUi.cs" />
     <Compile Include="Iplayer.cs" />
-    <Compile Include="PlayerStone.cs" />
+    <Compile Include="PlayerPiece.cs" />
+    <Compile Include="PlayPieceMovement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

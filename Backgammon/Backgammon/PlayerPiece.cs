@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Backgammon
 {
-    public class PlayerStone
+    public class PlayerPiece
     {
-        public bool IsPlayer1Stone { get; set; }
-        public PlayerStone(bool isPlayer1Stone)
+        public bool IsPlayer1Piece { get; set; }
+        public PlayerPiece(bool isPlayer1Piece)
         {
-            IsPlayer1Stone = isPlayer1Stone;
+            IsPlayer1Piece = isPlayer1Piece;
         }
     }
 }

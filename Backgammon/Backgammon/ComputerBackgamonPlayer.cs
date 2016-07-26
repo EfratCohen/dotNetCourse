@@ -8,7 +8,7 @@ namespace Backgammon
 {
     public class ComputerBackgamonPlayer : Iplayer
     {
-        public GameStoneMovement NextGameMoveChose(List<GameStoneMovement> nextLegalMoves, bool isPlayer_1)
+        public PlayPieceMovement NextGameMoveChose(List<PlayPieceMovement> nextLegalMoves, bool isPlayer_1)
         {
             if (nextLegalMoves != null && nextLegalMoves.Count <= 0)
             {

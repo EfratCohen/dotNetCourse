@@ -8,11 +8,11 @@ namespace Backgammon
 {
     public class GameBoard
     {
-        public List<PlayerStone>[] Boardtriangles { get;  set; } = new List<PlayerStone>[24];
-        public List<PlayerStone> Player_1_FinalDestination { get; set; } = new List<PlayerStone>(0);
-        public List<PlayerStone> Player_2_FinalDestination { get; set; } = new List<PlayerStone>(0);
-        public List<PlayerStone> Player_1Prison { get; set; } = new List<PlayerStone>(0);
-        public List<PlayerStone> Player_2Prison { get;  set; } = new List<PlayerStone>(0);  
+        public List<PlayerPiece>[] BoardPoints { get;  set; } = new List<PlayerPiece>[24];
+        public List<PlayerPiece> Player_1_FinalDestination { get; set; } = new List<PlayerPiece>(0);
+        public List<PlayerPiece> Player_2_FinalDestination { get; set; } = new List<PlayerPiece>(0);
+        public List<PlayerPiece> Player_1Prison { get; set; } = new List<PlayerPiece>(0);
+        public List<PlayerPiece> Player_2Prison { get;  set; } = new List<PlayerPiece>(0);  
     }
 
 }

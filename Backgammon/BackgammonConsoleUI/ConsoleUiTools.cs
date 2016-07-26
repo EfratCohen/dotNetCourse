@@ -10,33 +10,33 @@ namespace BackgammonConsoleUI
 {
     public class ConsoleUiTools
     {
-        public void ConsoleBoardConfigPrint(GameBoard board, List<GameStoneMovement> nextLegalMoves)
+        public void ConsoleBoardConfigPrint(GameBoard board, List<PlayPieceMovement> nextLegalMoves)
         {
             //setup//********************************************************
-            StoneslePrintInfo[][] tringlesInfo = new StoneslePrintInfo[4][];
-            var tringles13_18Info = new StoneslePrintInfo[6];
-            var tringles19_24Info = new StoneslePrintInfo[6];
-            var tringles12_7Info = new StoneslePrintInfo[6];
-            var tringles6_1Info = new StoneslePrintInfo[6];
-            var homesInfo = new StoneslePrintInfo[2];
-            var redHomeinfo = new StoneslePrintInfo();
+            PiecesPointPrintInfo[][] tringlesInfo = new PiecesPointPrintInfo[4][];
+            var tringles13_18Info = new PiecesPointPrintInfo[6];
+            var tringles19_24Info = new PiecesPointPrintInfo[6];
+            var tringles12_7Info = new PiecesPointPrintInfo[6];
+            var tringles6_1Info = new PiecesPointPrintInfo[6];
+            var homesInfo = new PiecesPointPrintInfo[2];
+            var redHomeinfo = new PiecesPointPrintInfo();
             redHomeinfo.IsRed = true;
-            var whiteHomeinfo = new StoneslePrintInfo();
-            var prisonsInfo = new StoneslePrintInfo[2];
-            var redprisoninfo = new StoneslePrintInfo();
+            var whiteHomeinfo = new PiecesPointPrintInfo();
+            var prisonsInfo = new PiecesPointPrintInfo[2];
+            var redprisoninfo = new PiecesPointPrintInfo();
             redprisoninfo.IsRed = true;
-            var whiteprisoninfo = new StoneslePrintInfo();
+            var whiteprisoninfo = new PiecesPointPrintInfo();
             //********************************************************************
             for(int i = 0; i < 6; i++)
             {
-                tringles6_1Info[5-i]= new StoneslePrintInfo();
-                invkeInfo(tringles6_1Info[5-i], board.Boardtriangles[i]);
-                tringles12_7Info[5-i] = new StoneslePrintInfo();
-                invkeInfo(tringles12_7Info[5 - i], board.Boardtriangles[6 + i]);
-                tringles13_18Info[i] = new StoneslePrintInfo();
-                invkeInfo(tringles13_18Info[i],board.Boardtriangles[12+i]);
-                tringles19_24Info[i] = new StoneslePrintInfo();
-                invkeInfo(tringles19_24Info[i], board.Boardtriangles[18 + i]);
+                tringles6_1Info[5-i]= new PiecesPointPrintInfo();
+                invkeInfo(tringles6_1Info[5-i], board.BoardPoints[i]);
+                tringles12_7Info[5-i] = new PiecesPointPrintInfo();
+                invkeInfo(tringles12_7Info[5 - i], board.BoardPoints[6 + i]);
+                tringles13_18Info[i] = new PiecesPointPrintInfo();
+                invkeInfo(tringles13_18Info[i],board.BoardPoints[12+i]);
+                tringles19_24Info[i] = new PiecesPointPrintInfo();
+                invkeInfo(tringles19_24Info[i], board.BoardPoints[18 + i]);
             }
 
             //*************************************** Enter the information *****************************
@@ -59,7 +59,7 @@ namespace BackgammonConsoleUI
 
         }
         //private methods:
-        void boardPrint(StoneslePrintInfo[][] tringlesInfo, StoneslePrintInfo[] homesInfo, StoneslePrintInfo[] prisonsInfo)
+        void boardPrint(PiecesPointPrintInfo[][] tringlesInfo, PiecesPointPrintInfo[] homesInfo, PiecesPointPrintInfo[] prisonsInfo)
         {
 
             ///consts:***********************Do Not Touch!*******************
@@ -76,7 +76,7 @@ namespace BackgammonConsoleUI
             Console.WriteLine(index1);
             Console.WriteLine(borderLine);
         }
-        void RowPrint(StoneslePrintInfo[] leftTringleInfo, StoneslePrintInfo[] rightTringleInfo, StoneslePrintInfo homeInfo, StoneslePrintInfo prisonInfo)
+        void RowPrint(PiecesPointPrintInfo[] leftTringleInfo, PiecesPointPrintInfo[] rightTringleInfo, PiecesPointPrintInfo homeInfo, PiecesPointPrintInfo prisonInfo)
         {
             ///consts:***********************Do Not Touch!*******************
             var tringleStoneCell = string.Format($"| {0}");
@@ -117,7 +117,7 @@ namespace BackgammonConsoleUI
                 Console.BackgroundColor = ConsoleColor.Black;
             }
         }
-        void TringleStoneCellPrint(StoneslePrintInfo inf)
+        void TringleStoneCellPrint(PiecesPointPrintInfo inf)
         {
             int stone = 0;
             Console.ForegroundColor = ConsoleColor.Gray;
@@ -147,7 +147,7 @@ namespace BackgammonConsoleUI
             Console.Write($"{stone}");
             SetDefaultConsole();
         }
-        void HomeStone3CellsPrint(StoneslePrintInfo inf)
+        void HomeStone3CellsPrint(PiecesPointPrintInfo inf)
         {
             int cell = 1;
             if (inf.Counter > 0)
@@ -176,7 +176,7 @@ namespace BackgammonConsoleUI
                 Console.Write($"||{1}{1}{1}");
             }
         }
-        void PrisonStone3CellsPrint(StoneslePrintInfo inf)
+        void PrisonStone3CellsPrint(PiecesPointPrintInfo inf)
         {
             int cell = 8;
             if (inf.Counter > 0)
@@ -205,7 +205,7 @@ namespace BackgammonConsoleUI
                 Console.Write($"|{8}{8}{8}");
             }
         }
-        void invkeInfo(StoneslePrintInfo inf, List<PlayerStone> boardtriangle)
+        void invkeInfo(PiecesPointPrintInfo inf, List<PlayerPiece> boardtriangle)
         {
             if (boardtriangle.Count > 5)
             {
@@ -217,7 +217,7 @@ namespace BackgammonConsoleUI
             {
                 inf.Counter = boardtriangle.Count;
             }
-            if (boardtriangle.Count > 0 && boardtriangle[0].IsPlayer1Stone)
+            if (boardtriangle.Count > 0 && boardtriangle[0].IsPlayer1Piece)
             {
                 inf.IsRed = true;
             }

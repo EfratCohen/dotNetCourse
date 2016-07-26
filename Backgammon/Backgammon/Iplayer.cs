@@ -8,6 +8,6 @@ namespace Backgammon
 {
     public interface Iplayer
     {
-        GameStoneMovement NextGameMoveChose(List<GameStoneMovement> nextLegalMoves , bool isPlayer_1);
+        PlayPieceMovement NextGameMoveChose(List<PlayPieceMovement> nextLegalMoves , bool isPlayer_1);
     }
 }

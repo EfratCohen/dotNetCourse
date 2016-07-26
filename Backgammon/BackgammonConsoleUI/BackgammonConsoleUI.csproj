@@ -46,10 +46,10 @@
     <Compile Include="BackgammonUI.cs" />
     <Compile Include="ConsoleUiTools.cs" />
     <Compile Include="HumanBackgamonPlayer.cs" />
+    <Compile Include="PiecesPointPrintInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgramHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StoneslePrintInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

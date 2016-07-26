@@ -14,9 +14,9 @@ namespace BackgammonConsoleUI
             Console.WriteLine("sketch");
             ConsoleUiTools tool = new ConsoleUiTools();
             GameBoard game = new GameBoard();
-            game.Player_1_FinalDestination.Add(new PlayerStone(true));
-            game.Player_2_FinalDestination.Add(new PlayerStone(false));
-            game.Player_2Prison.Add(new PlayerStone(false));
+            game.Player_1_FinalDestination.Add(new PlayerPiece(true));
+            game.Player_2_FinalDestination.Add(new PlayerPiece(false));
+            game.Player_2Prison.Add(new PlayerPiece(false));
             tool.ConsoleBoardConfigPrint(game,null);
 
         }
