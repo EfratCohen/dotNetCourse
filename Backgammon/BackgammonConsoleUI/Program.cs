@@ -25,6 +25,7 @@ namespace BackgammonConsoleUI
         {
             var ui = new BackgammonUI();
             var backgamonGame = new GameManneger();
+            var humanPlayer = new HumanBackgamonPlayer();
             var comp = new ComputerBackgamonPlayer();
             var progHelp = new ProgramHelper();
             string inputMessage;
@@ -39,10 +40,10 @@ namespace BackgammonConsoleUI
                     switch (inputMessage)
                     {
                         case "friend":
-                            gameScore= backgamonGame.Play(ui, ui, ui);
+                            gameScore= backgamonGame.Play(humanPlayer, humanPlayer, ui);
                             break;
                         case "comp":
-                            gameScore = backgamonGame.Play(ui, comp, ui);
+                            gameScore = backgamonGame.Play(humanPlayer, comp, ui);
                             break;
                         case "movie":
                             gameScore = backgamonGame.Play(comp, comp, ui);

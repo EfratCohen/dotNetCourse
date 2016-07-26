@@ -24,7 +24,7 @@ namespace BackgammonConsoleUI
             var whiteHomeinfo = new StoneslePrintInfo();
             var prisonsInfo = new StoneslePrintInfo[2];
             var redprisoninfo = new StoneslePrintInfo();
-            redHomeinfo.IsRed = true;
+            redprisoninfo.IsRed = true;
             var whiteprisoninfo = new StoneslePrintInfo();
             //********************************************************************
             for(int i = 0; i < 6; i++)
@@ -49,11 +49,12 @@ namespace BackgammonConsoleUI
             whiteHomeinfo.Counter = board.Player_2_FinalDestination.Count;
             redprisoninfo.Counter = board.Player_1Prison.Count;
             whiteprisoninfo.Counter = board.Player_2Prison.Count;
-            ///************************************************* Print ************************************
+
             homesInfo[0] = redHomeinfo;
             homesInfo[1] = whiteHomeinfo;
             prisonsInfo[0] = whiteprisoninfo;
             prisonsInfo[1] = redprisoninfo;
+            ///************************************************* Print ************************************
             boardPrint(tringlesInfo, homesInfo, prisonsInfo);
 
         }
@@ -64,18 +65,21 @@ namespace BackgammonConsoleUI
             ///consts:***********************Do Not Touch!*******************
             var gap = String.Format($"|XXXXXXXXXXXXXXXXXXXXXXXXXXX|");
             var borderLine = String.Format($"----------------------------------");
+            var index2 = String.Format($"{13}{14}{15}{16}{17}{18}| 25|{19}{20}{21}{22}{23}{24}");
+            var index1 = String.Format($"{12}{11}{10} {9} {8} {7}| 0 |{6} {5} {4} {3} {2} {1}");
             ///**************************************************************
             Console.WriteLine(borderLine);
+            Console.WriteLine(index2);
             for (int i = 0; i < 5; i++) { RowPrint(tringlesInfo[0], tringlesInfo[1], homesInfo[0], prisonsInfo[0]); }
             for (int i = 0; i < 2; i++) { Console.WriteLine(gap); }
-            for (int i = 0; i < 5; i++) { RowPrint(tringlesInfo[2], tringlesInfo[3], homesInfo[1], prisonsInfo[0]); }
+            for (int i = 0; i < 5; i++) { RowPrint(tringlesInfo[2], tringlesInfo[3], homesInfo[1], prisonsInfo[1]); }
+            Console.WriteLine(index1);
             Console.WriteLine(borderLine);
-
         }
         void RowPrint(StoneslePrintInfo[] leftTringleInfo, StoneslePrintInfo[] rightTringleInfo, StoneslePrintInfo homeInfo, StoneslePrintInfo prisonInfo)
         {
             ///consts:***********************Do Not Touch!*******************
-            var tringleStoneCell = string.Format($"|{0}");
+            var tringleStoneCell = string.Format($"| {0}");
             var home = string.Format($"||{1}{1}{1}");
             var endRow = "|\n";
             ///**************************************************************

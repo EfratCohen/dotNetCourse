@@ -31,7 +31,7 @@ namespace BackgammonConsoleUI
             }
             else
             {
-                Console.WriteLine("this is player 2, with the black stones, turn");
+                Console.WriteLine("this is player 2, with the white stones, turn");
             }
         }
         public void AfterGameVictory(bool isPlayer_1_Victory, bool isMars)
