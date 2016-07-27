@@ -17,10 +17,20 @@ namespace PrimesCalculator
             InitializeComponent();
         }
 
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+        }
+
         private void Form_Load(object sender, EventArgs e)
         {
 
         }
+
         /// <summary>
         /// 3.
         /// When the user presses the “Calculate” button,
@@ -83,111 +93,7 @@ namespace PrimesCalculator
             return isValidInput;
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
 
-        }
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {      
-        }
     }
-
-    namespace Primes
-    {
-        class Program
-        {
-            /// <summary>
-            /// Accept two numbers from the console. 
-            /// Call CalcPrimes with the numbers, and display the results.
-            /// </summary>
-            /// <param name="args"></param>
-            static void pMain(string[] args)
-            {
-                int lowRangeBound, highRangeBound;
-                Console.WriteLine("please enter a positive integer to the range's low bound ");
-                GetPositiveIntegr(out lowRangeBound);
-                Console.WriteLine("please enter a positive integer to the range's high bound ");
-                GetPositiveIntegr(out highRangeBound);
-                int[] output = CalcPrimes(lowRangeBound, highRangeBound);
-                Console.WriteLine("the prime numbers in [" + lowRangeBound + "," + highRangeBound + "] is:");
-                for (int i = 0; i < output.Length; i++)
-                {
-                    Console.Write(output[i] + " ");
-                }
-                Console.Write("\n");
-            }
-            /// <summary>
-            ///  get a console input 
-            ///  check if it is positive integer
-            ///  if yes- put it into the param;
-            ///  if no- try again until sucsses
-            /// </summary>
-            /// <param name="input"></param>
-            static void GetPositiveIntegr(out int input)
-            {
-                string inputString = Console.ReadLine();
-                inputString = inputString.Trim();
-                while (!(int.TryParse(inputString, out input)))
-                {
-                    Console.WriteLine("we get wrong input, try again to enter a positive integer");
-                    inputString = Console.ReadLine();
-                    inputString = inputString.Trim();
-                }
-            }
-            /// <summary>
-            /// Calculate all the prime numbers in the range of the numbers passed as arguments. 
-            /// Collect all primes in an ArrayList. Return the result.
-            /// </summary>
-            /// <param name="lowRangeBound"></param>
-            /// <param name="highRangeBound">should be bigger then or equal to the first parameter</param>
-            /// <returns>integer's array of all the prime numbers in the range of the numbers passed as arguments</returns>
-            static int[] CalcPrimes(int lowRangeBound, int highRangeBound)//(hint: you can use ArrayList.CopyTo).
-            {
-                System.Collections.ArrayList primesInTheRange = new System.Collections.ArrayList();
-                int finalSize = 0;
-                if (lowRangeBound <= highRangeBound) //we calculate only if we get a legal renge
-                {
-                    PrimearyChecker primeCheck = new PrimearyChecker();
-
-                    for (int j = 0; j < (highRangeBound - lowRangeBound + 1); j++)
-                    {
-                        if (primeCheck.isPrime(lowRangeBound + j))
-                        {
-                            primesInTheRange.Add(lowRangeBound + j);
-                        }
-                    }
-
-                }
-                finalSize = primesInTheRange.Count;
-                int[] primes = new int[finalSize];
-                primesInTheRange.CopyTo(primes);
-                return primes;
-            }
-        }
-        class PrimearyChecker
-        {
-            /// <summary>
-            /// check if a number is primeary
-            /// </summary>
-            /// <param name="number"></param>
-            /// <returns>true-if it is prime, fals- o.w.</returns>
-            public bool isPrime(int number)
-            {
-                int boundary = (int)Math.Floor(Math.Sqrt(number));
-
-                if (number == 1) return false;
-                if (number == 2) return true;
-
-                for (int i = 2; i <= boundary; ++i)
-                {
-                    if (number % i == 0) return false;
-                }
-
-                return true;
-            }
-        }
-    }
-
-
 }
 

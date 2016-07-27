@@ -30,8 +30,6 @@ namespace PrimesCalculator
         /// </summary>
         private void InitializeComponent()
         {
-            Name = "Primes Calculator";
-
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
