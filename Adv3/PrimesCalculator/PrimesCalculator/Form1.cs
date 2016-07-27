@@ -52,11 +52,11 @@ namespace PrimesCalculator
             {
                 List<int> primes = new List<int>();
                 await PrimeNumbersCalculateAsync(lowRangeBound, highRangeBound, primes);
-                listBox1.DataSource = primes;
+                primesListBox.DataSource = primes;
             }
             else
             {
-                MessageBox.Show("Invalid inputs!");
+                MessageBox.Show("\tInvalid inputs!\n Please enter two intergers, one higher then the other.");
             }          
         }
         /// <summary>
@@ -87,13 +87,16 @@ namespace PrimesCalculator
         /// <param name="highRangeBound"></param>
         private bool GetRangeBounds(out int lowRangeBound, out int highRangeBound )
         {
-            bool isValidInput = int.TryParse((textBox1 as TextBox).Text, out lowRangeBound);
-            isValidInput &= int.TryParse((textBox2 as TextBox).Text, out highRangeBound);
+            bool isValidInput = int.TryParse((lowBoundBox as TextBox).Text, out lowRangeBound);
+            isValidInput &= int.TryParse((highBoundBox as TextBox).Text, out highRangeBound);
             isValidInput &= lowRangeBound <= highRangeBound;
             return isValidInput;
         }
 
+        private void label3_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }
 

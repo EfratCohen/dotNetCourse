@@ -8,7 +8,7 @@ namespace PrimesCalculator
             /// check if a number is primeary
             /// </summary>
             /// <param name="number"></param>
-            /// <returns>true-if it is prime, fals- o.w.</returns>
+            /// <returns>true-if it is prime, false- o.w.</returns>
             public bool isPrime(int number)
             {
                 int boundary = (int)Math.Floor(Math.Sqrt(number));
