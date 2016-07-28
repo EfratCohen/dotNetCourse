@@ -8,15 +8,23 @@ using System.Threading.Tasks;
 namespace Queues
 {
     
-    class LimitedQueue<T>
+    public class LimitedQueue<T>
     {
         
         /// for the need to make sure that readers wont fail to read if there are concurrent writers
         ///actually  - we alow only one reader(Deque) and arbitary[but limited] no' of writers(Enque)
         ReaderWriterLockSlim _readerWriterLock = new ReaderWriterLockSlim();
-        
         Queue<T> _queue = new Queue<T>();
         SemaphoreSlim _semaphore;
+
+        public int Count
+        {
+            get
+            {
+                return _queue.Count;
+            }
+        }
+
         public void Enque(T elment)
         {
             _semaphore.Wait();
@@ -47,5 +55,7 @@ namespace Queues
         {
             _semaphore = new SemaphoreSlim(maxQueueSize);
         }
+
+
     }
 }
