@@ -5,12 +5,13 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PrimesCalculator
 {
-    public partial class Form1 : System.Windows.Forms.Form
+    public partial class Form1 : Form
     {
         public Form1()
         {
@@ -31,6 +32,9 @@ namespace PrimesCalculator
 
         }
 
+        AutoResetEvent _autoResetEvent;
+        CancellationTokenSource _CancellationTokenSource;
+
         /// <summary>
         /// 3.
         /// When the user presses the “Calculate” button,
@@ -50,8 +54,13 @@ namespace PrimesCalculator
             bool isValidInput = GetRangeBounds(out lowRangeBound, out highRangeBound);
             if (isValidInput)
             {
+                #region for 7.2
+                _autoResetEvent = new AutoResetEvent(false); //a.
+                _CancellationTokenSource = new CancellationTokenSource(); //b.
+                var cacellationToken = _CancellationTokenSource.Token;
+                #endregion
                 List<int> primes = new List<int>();
-                await PrimeNumbersCalculateAsync(lowRangeBound, highRangeBound, primes);
+                await PrimeNumbersCalculateAsync(lowRangeBound, highRangeBound, primes,cacellationToken);
                 primesListBox.DataSource = primes;
             }
             else
@@ -65,7 +74,7 @@ namespace PrimesCalculator
         /// <param name="lowRangeBound"></param>
         /// <param name="highRangeBound"></param>
         /// <returns></returns>
-        private async Task PrimeNumbersCalculateAsync(int lowRangeBound, int highRangeBound, List<int> primes)
+        private async Task PrimeNumbersCalculateAsync(int lowRangeBound, int highRangeBound, List<int> primes,CancellationToken token)
         {
             PrimearyChecker primeCheck = new PrimearyChecker();
             await Task.Run(() =>
@@ -76,6 +85,22 @@ namespace PrimesCalculator
                     {
                         primes.Add(lowRangeBound + j);
                     }
+                    #region I have added this because i wasn't fast inugh to cacncle or stop the caculateing before it ended.
+                    Thread.Sleep(1000);
+                    #endregion
+                    #region for 7.2
+                    //a.
+                    bool isSTOPSignald= _autoResetEvent.WaitOne(0);
+                    if(isSTOPSignald)
+                    {
+                        return;
+                    }
+                    //b.
+                    if (token.IsCancellationRequested)
+                    {
+                        return;
+                    }
+                    #endregion
                 }
             }
             );
@@ -96,6 +121,25 @@ namespace PrimesCalculator
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+        /// <summary>
+        /// 7.2.b.	Use a CancellationToken to signal the cancellation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonCANCEL_Click(object sender, EventArgs e)
+        {
+            _CancellationTokenSource.Cancel();
+        }
+        /// <summary>
+        /// 7.2.a.	Use an Event object to signal the thread to “bail out” early. 
+        /// by call WaitHandle.WaitOne with a timeout of zero to just “check” if the object is signalled.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonSTOP_Click(object sender, EventArgs e)
+        {
+            _autoResetEvent.Set();
         }
     }
 }

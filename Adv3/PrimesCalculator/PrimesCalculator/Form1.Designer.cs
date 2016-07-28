@@ -37,46 +37,48 @@ namespace PrimesCalculator
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.buttonSTOP = new System.Windows.Forms.Button();
+            this.buttonCANCEL = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // textBox1
+            // lowBoundBox
             // 
-            this.lowBoundBox.Location = new System.Drawing.Point(74, 29);
-            this.lowBoundBox.Name = "textBox1";
-            this.lowBoundBox.Size = new System.Drawing.Size(32, 20);
+            this.lowBoundBox.Location = new System.Drawing.Point(86, 31);
+            this.lowBoundBox.Name = "lowBoundBox";
+            this.lowBoundBox.Size = new System.Drawing.Size(42, 20);
             this.lowBoundBox.TabIndex = 1;
-            this.lowBoundBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.lowBoundBox.TextChanged += new System.EventHandler(textBox1_TextChanged);
             // 
-            // textBox2
+            // highBoundBox
             // 
-            this.highBoundBox.Location = new System.Drawing.Point(162, 29);
-            this.highBoundBox.Name = "textBox2";
-            this.highBoundBox.Size = new System.Drawing.Size(32, 20);
+            this.highBoundBox.Location = new System.Drawing.Point(174, 31);
+            this.highBoundBox.Name = "highBoundBox";
+            this.highBoundBox.Size = new System.Drawing.Size(43, 20);
             this.highBoundBox.TabIndex = 2;
-            this.highBoundBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.highBoundBox.TextChanged += new System.EventHandler(textBox2_TextChanged);
             // 
-            // listBox1
+            // primesListBox
             // 
             this.primesListBox.FormattingEnabled = true;
-            this.primesListBox.Location = new System.Drawing.Point(74, 136);
-            this.primesListBox.Name = "listBox1";
+            this.primesListBox.Location = new System.Drawing.Point(86, 136);
+            this.primesListBox.Name = "primesListBox";
             this.primesListBox.Size = new System.Drawing.Size(120, 95);
             this.primesListBox.TabIndex = 3;
             // 
             // Calculate
             // 
-            this.Calculate.Location = new System.Drawing.Point(96, 72);
+            this.Calculate.Location = new System.Drawing.Point(114, 72);
             this.Calculate.Name = "Calculate";
             this.Calculate.Size = new System.Drawing.Size(75, 23);
             this.Calculate.TabIndex = 4;
             this.Calculate.Text = "Calculate";
             this.Calculate.UseVisualStyleBackColor = true;
-            this.Calculate.Click += new System.EventHandler(this.Calculate_Click);
+            this.Calculate.Click += new System.EventHandler(Calculate_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 15);
+            this.label1.Location = new System.Drawing.Point(49, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(103, 13);
             this.label1.TabIndex = 5;
@@ -85,7 +87,7 @@ namespace PrimesCalculator
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(137, 15);
+            this.label2.Location = new System.Drawing.Point(158, 15);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(105, 13);
             this.label2.TabIndex = 6;
@@ -94,18 +96,40 @@ namespace PrimesCalculator
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(71, 120);
+            this.label3.Location = new System.Drawing.Point(83, 120);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(130, 13);
+            this.label3.Size = new System.Drawing.Size(135, 13);
             this.label3.TabIndex = 7;
-            this.label3.Text = "Prime number in the range";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            this.label3.Text = "Prime numbers in the range";
+            this.label3.Click += new System.EventHandler(label3_Click);
+            // 
+            // button1
+            // 
+            this.buttonSTOP.Location = new System.Drawing.Point(12, 58);
+            this.buttonSTOP.Name = "button1";
+            this.buttonSTOP.Size = new System.Drawing.Size(58, 23);
+            this.buttonSTOP.TabIndex = 8;
+            this.buttonSTOP.Text = "STOP";
+            this.buttonSTOP.UseVisualStyleBackColor = true;
+            this.buttonSTOP.Click += new System.EventHandler(buttonSTOP_Click);
+            // 
+            // button2
+            // 
+            this.buttonCANCEL.Location = new System.Drawing.Point(12, 87);
+            this.buttonCANCEL.Name = "button2";
+            this.buttonCANCEL.Size = new System.Drawing.Size(58, 23);
+            this.buttonCANCEL.TabIndex = 9;
+            this.buttonCANCEL.Text = "CANCEL";
+            this.buttonCANCEL.UseVisualStyleBackColor = true;
+            this.buttonCANCEL.Click += new System.EventHandler(this.buttonCANCEL_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.buttonCANCEL);
+            this.Controls.Add(this.buttonSTOP);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -130,6 +154,8 @@ namespace PrimesCalculator
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button buttonSTOP;
+        private System.Windows.Forms.Button buttonCANCEL;
     }
 }
 
