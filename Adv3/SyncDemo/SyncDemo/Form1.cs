@@ -55,8 +55,7 @@ namespace SyncDemo
             }
             _myMutex.ReleaseMutex();
             //7.
-
-
+            outPutTextBox.Text = "  Finished";
         }
     }
 }

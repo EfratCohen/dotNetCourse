@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.buttonSTART = new System.Windows.Forms.Button();
-            this.out_listBox = new System.Windows.Forms.ListBox();
+            this.outPutTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonSTART
             // 
-            this.buttonSTART.Location = new System.Drawing.Point(49, 12);
+            this.buttonSTART.Location = new System.Drawing.Point(24, 12);
             this.buttonSTART.Name = "buttonSTART";
             this.buttonSTART.Size = new System.Drawing.Size(68, 32);
             this.buttonSTART.TabIndex = 0;
@@ -42,32 +42,31 @@
             this.buttonSTART.UseVisualStyleBackColor = true;
             this.buttonSTART.Click += new System.EventHandler(this.buttonSTART_Click);
             // 
-            // out_listBox
+            // outPutTextBox
             // 
-            this.out_listBox.FormattingEnabled = true;
-            this.out_listBox.Location = new System.Drawing.Point(49, 68);
-            this.out_listBox.Name = "out_listBox";
-            this.out_listBox.Size = new System.Drawing.Size(178, 212);
-            this.out_listBox.TabIndex = 1;
-            this.out_listBox.SelectedIndexChanged += new System.EventHandler(this.out_listBox_SelectedIndexChanged);
+            this.outPutTextBox.Location = new System.Drawing.Point(148, 19);
+            this.outPutTextBox.Name = "outPutTextBox";
+            this.outPutTextBox.Size = new System.Drawing.Size(100, 20);
+            this.outPutTextBox.TabIndex = 2;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 299);
-            this.Controls.Add(this.out_listBox);
+            this.ClientSize = new System.Drawing.Size(284, 60);
+            this.Controls.Add(this.outPutTextBox);
             this.Controls.Add(this.buttonSTART);
             this.Name = "Form1";
             this.Text = "SyncDemo";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Button buttonSTART;
-        private System.Windows.Forms.ListBox out_listBox;
+        private System.Windows.Forms.TextBox outPutTextBox;
     }
 }
 
