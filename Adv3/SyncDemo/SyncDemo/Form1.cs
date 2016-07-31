@@ -29,7 +29,7 @@ namespace SyncDemo
         {
             InitializeComponent();
         }
-        
+        //3. 
         Mutex _myMutex;
 
         private void out_listBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -39,20 +39,20 @@ namespace SyncDemo
 
         private void buttonSTART_Click(object sender, EventArgs e)
         {
-            //3.
             _myMutex = new Mutex(false, "SyncFileMutex");
             //4.
             Directory.CreateDirectory(@"C:\temp");
-            
+            _myMutex.WaitOne();
             var myFileStream =File.Open(@"C:\temp\data.txt",FileMode.OpenOrCreate,FileAccess.ReadWrite);
             StreamWriter myWriter = new StreamWriter(myFileStream);
             //5.
-            string text = $"the writing procees id is {Process.GetCurrentProcess().Id}";
-            _myMutex.WaitOne();
+            string text = $"pro id ={Process.GetCurrentProcess().Id},";
+            
             for (int i = 0; i < 10000; i++)
             {
                 myWriter.WriteLine(text);
             }
+            myFileStream.Close();
             _myMutex.ReleaseMutex();
             //7.
             outPutTextBox.Text = "  Finished";
