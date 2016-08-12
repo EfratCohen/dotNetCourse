@@ -15,15 +15,15 @@ namespace Custom_AwaiterConsoleApplication
             intAwaitExample();
             Console.WriteLine("Main Continue 1");
 
-            #region This will work only on my computer- were the exe file exist
+            #region This will work only on a computer- with notpad process
 
-            //var proc = Process.Start(@"C:\Users\Efrat\Desktop\DotNetCourse\Git\dotNetCourse\Adv4\Primes\Primes\bin\Debug\Primes.exe");
-            //Console.WriteLine($"We have created new proc with id {proc.Id} for example");
-            //procAwaitExample(proc);
-            //Console.WriteLine("Main Continue 2");
-            //proc.Kill();
-            //Console.WriteLine("we have killed the example proc");
-            //Console.WriteLine("Main Continue 3");
+            var proc = Process.Start("notepad");
+            Console.WriteLine($"We have created new proc with id {proc.Id} for example");
+            procAwaitExample(proc);
+            Console.WriteLine("Main Continue 2");
+            proc.Kill();
+            Console.WriteLine("we have killed the example proc");
+            Console.WriteLine("Main Continue 3");
 
             #endregion
 
