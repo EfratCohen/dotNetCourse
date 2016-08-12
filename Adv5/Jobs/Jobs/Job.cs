@@ -9,14 +9,12 @@ namespace Jobs
 {
     /// <summary>
     /// 8.	Part B:
-    ///a.Let’s assume the Native Job is holding a lot of native memory
-    ///b.Add a call in the Job ctor to GC.AddMemoryPressure(sizeInByte) 
-    ///and display a message that the Job was created
-    ///c.Add a call in the finalizer to GC.RemoveMemoryPressure(sizeInBytes)
-    ///and display a message that the Job was released
-    ///d.Create a loop in your main method that creates 20 Job objects
-    ///e.See what happens when you run the application with different “sizeInBytes”.
-    ///Try 0 MB and 10 MB
+        ///a.Let’s assume the Native Job is holding a lot of native memory
+        ///b.Add a call in the Job ctor to GC.AddMemoryPressure(sizeInByte) 
+        ///and display a message that the Job was created
+        ///c.   Add a call in the finalizer to GC.RemoveMemoryPressure(sizeInBytes)
+        ///    and display a message that the Job was released
+
     /// </summary>
     public class Job : IDisposable
     {
@@ -27,6 +25,8 @@ namespace Jobs
         private IntPtr _hJob;
 
         private List<Process> _processes;
+
+        private int _sizeInByte;
 
         #endregion
 
@@ -50,7 +50,14 @@ namespace Jobs
             }
             _processes = new List<Process>();
 
-            GC.AddMemoryPressure(sizeInByte);
+            _sizeInByte=sizeInByte;
+
+            if (_sizeInByte > 0)
+            {
+                GC.AddMemoryPressure(sizeInByte);
+            }
+            
+            Console.WriteLine($"A Job with the name {name} has created with ask for {sizeInByte} (sizeInByte) memory from the GC ");
         }
 
         public Job()
@@ -62,14 +69,17 @@ namespace Jobs
 
         private void CheckIfDisposed()
         {
-
+            if (_disposed)
+            {
+                throw new InvalidOperationException("Failed to add process to disposed job");
+            }
         }
 
         protected void AddProcessToJob(IntPtr hProcess)
         {
-            CheckIfDisposed();
+            
+                if (!NativeJob.AssignProcessToJobObject(_hJob, hProcess))
 
-            if (!NativeJob.AssignProcessToJobObject(_hJob, hProcess))
                 throw new InvalidOperationException("Failed to add process to job");
         }
 
@@ -85,24 +95,13 @@ namespace Jobs
             _processes.Add(proc);
         }
 
-        /// <summary>
-        /// 5.	Implement the Kill method by calling NativeJob.TerminateJobObject.
-        /// </summary>
 		public void Kill()
         {
             NativeJob.TerminateJobObject(_hJob, 0);
 
         }
 
-        /// <summary>
-        /// 4.	Implement the IDisposable interface on the Job class.
-        ///        Use the following guidelines:
-        ///     a.
-        ///     Make use of the Dispose pattern, i.e.create a Dispose(bool) method as discussed in the course.
-        ///     b.
-        ///     Make sure calling Dispose multiple times is harmless,
-        ///     while calling anything substantial if the object is disposed throws a ObjectDisposedException.
-        /// </summary>
+        #region Dispose pattern
 
         protected virtual void Dispose(bool disposing)
         {
@@ -118,18 +117,28 @@ namespace Jobs
                 }
             }
             NativeJob.CloseHandle(_hJob);
-            _disposed = true;
-        }
 
-        ~Job()
-        {
-            Dispose(false);
+            if (_sizeInByte > 0)
+            {
+                GC.RemoveMemoryPressure(_sizeInByte);
+            }
+            Console.WriteLine("Job was released");
+
+            _disposed = true;
         }
 
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        #endregion
+
+        ~Job()
+        {
+            Dispose(false);
+
         }
     }
 }

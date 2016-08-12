@@ -5,10 +5,13 @@ using System.Text;
 using System.Diagnostics;
 using System.Threading;
 
+
 namespace Jobs
 {
+
     class Program
     {
+         const int _10M = 10485760*10; 
 
         static void Main(string[] args)
         {
@@ -19,7 +22,15 @@ namespace Jobs
             /// 
             Job job = new Job();
             Process someProcesses = Process.Start("notepad");
-            job.AddProcessToJob(someProcesses.Id);
+            try
+            {
+                job.AddProcessToJob(someProcesses.Id);
+            }
+            catch (InvalidOperationException ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
 
             /// 7.	
             /// Call Console.ReadLine 
@@ -27,6 +38,20 @@ namespace Jobs
             Console.WriteLine();
             job.Kill();
 
+            /// B.d.  Create a loop in your main method that creates 20 Job objects
+            ///e.See what happens when you run the application with different “sizeInBytes”.
+            ///Try 0 MB and 10 MB
+
+            for (int i = 0; i < 20; i++)
+            {
+                var j = new Job();
+            }
+            for (int i = 0; i < 20; i++)
+            {
+                var j = new Job(null, _10M);
+            }
+
+            Console.Read();
         }
     }
 }
